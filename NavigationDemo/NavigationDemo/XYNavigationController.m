@@ -7,11 +7,12 @@
 //
 
 #import "XYNavigationController.h"
-#import <QuartzCore/QuartzCore.h>
+#import "CustomAnimation.h"
 
 #define KEY_WINDOW   [[UIApplication sharedApplication]keyWindow]
 #define TOP_VIEW     [[UIApplication sharedApplication]keyWindow].rootViewController.view
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
 //Maximum width to move
 static CGFloat kMAXWidth = 320;
 
@@ -23,6 +24,7 @@ static CGFloat kMAXWidth = 320;
 @property (nonatomic, strong) UIImageView    *lastScreenShotView;
 @property (nonatomic, strong) NSMutableArray *screenShotsList;
 @property (nonatomic, assign) BOOL isMoving;
+@property (nonatomic, strong) CustomAnimation *customAnimation;
 
 @end
 
@@ -40,13 +42,14 @@ static CGFloat kMAXWidth = 320;
         self.screenShotsList = [[NSMutableArray alloc]initWithCapacity:2];
         self.canDragBack = YES;
         self.type = TransformTypeTranslation;
+        self.customAnimation = [[CustomAnimation alloc] init];
+        self.delegate = self;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc]initWithTarget:self
                                                                                  action:@selector(paningGestureReceive:)];
     panRecognizer.delegate = self;
@@ -67,6 +70,20 @@ static CGFloat kMAXWidth = 320;
     }
 }
 
+- (nullable id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                            animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                         fromViewController:(UIViewController *)fromVC
+                                                           toViewController:(UIViewController *)toVC{
+    //根据需要判断
+//    if (operation == UINavigationControllerOperationPop) {
+//        
+//    }
+//    return nil;
+    self.customAnimation.navigationController = self;
+    self.customAnimation.navigationOperation = operation;
+    return self.customAnimation;
+}
+
 // override the push method
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     
@@ -84,7 +101,25 @@ static CGFloat kMAXWidth = 320;
     return [super popViewControllerAnimated:animated];
 }
 
-#pragma mark - Utility Methods
+- (NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    NSInteger removeCount = 0;
+    for (NSInteger i = self.viewControllers.count - 1; i > 0; i--) {
+        if (viewController == self.viewControllers[i]) {
+            break;
+        }
+        [self.screenShotsList removeLastObject];
+        removeCount ++;
+    }
+    self.customAnimation.removeCount = removeCount;
+    return [super popToViewController:viewController animated:animated];
+}
+
+- (NSArray<UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated {
+    [self.screenShotsList removeAllObjects];
+    [self.customAnimation removeAllScreenShot];
+    return [super popToRootViewControllerAnimated:animated];
+}
+#pragma mark -  Methods
 // get the current view screen shot
 - (UIImage *)capture {
     
@@ -185,7 +220,8 @@ static CGFloat kMAXWidth = 320;
                 TOP_VIEW.frame = frame;
                 _isMoving = NO;
                 self.backgroundView.hidden = YES;
-                
+                // End paning,remove last screen shot
+                [self.customAnimation removeLastScreenShot];
             }];
         } else {
             [UIView animateWithDuration:0.3 animations:^{

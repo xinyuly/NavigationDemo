@@ -10,11 +10,11 @@
 
 typedef NS_ENUM(NSUInteger,TransformType) {
     TransformTypeNormal,
-    TransformTypeScale,
-    TransformTypeTranslation
+    TransformTypeScale,//缩放模式
+    TransformTypeTranslation //平移模式
 };
 
-@interface XYNavigationController : UINavigationController <UIGestureRecognizerDelegate>
+@interface XYNavigationController : UINavigationController <UIGestureRecognizerDelegate,UINavigationControllerDelegate>
 
 // default is YES
 @property (nonatomic, assign) BOOL canDragBack;

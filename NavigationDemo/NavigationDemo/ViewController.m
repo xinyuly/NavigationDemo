@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 
+
 @interface ViewController ()
 @property (strong, nonatomic) UILabel  *textLabel;
 @property (strong, nonatomic) UIButton *nextButton;
@@ -28,12 +29,42 @@
     [self.nextButton setTitle:@"下一页" forState:UIControlStateNormal];
     [self.view addSubview:self.nextButton];
     self.nextButton.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor =  [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+    if (self.navigationController.viewControllers.count > 1 ) {
+        [self showLeftBarItem:@"icon_nav_back" highlightedImage:@"icon_nav_back" selector:@selector(back)];
+    }
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(60, 400, 100, 40)];
+    [button setTitle:@"回到首页" forState:UIControlStateNormal];
+    [self.view addSubview:button];
+    [button addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)nextViewController{
     ViewController *vc = [[ViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)popViewController {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+   
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)showLeftBarItem:(NSString *)imageName highlightedImage:(NSString *)imageNameH selector:(SEL)selector {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:CGRectMake(0, 0, 32, 32)];
+    [btn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:imageNameH] forState:UIControlStateHighlighted];
+    if (selector) {
+        [btn addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    }
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = item;
 }
 
 @end

@@ -15,6 +15,7 @@
 		AE48FD031DDD7E7000A44CD5 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE48FD021DDD7E7000A44CD5 /* TabBarController.m */; };
 		AE48FD061DDD7E8700A44CD5 /* XYNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE48FD051DDD7E8700A44CD5 /* XYNavigationController.m */; };
 		AE48FD091DDD7F0700A44CD5 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = AE48FD081DDD7F0700A44CD5 /* TabBar.m */; };
+		AE9361C31E8A4D0D008DD435 /* CustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = AE9361C21E8A4D0D008DD435 /* CustomAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		AE48FD051DDD7E8700A44CD5 /* XYNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYNavigationController.m; sourceTree = "<group>"; };
 		AE48FD071DDD7F0700A44CD5 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		AE48FD081DDD7F0700A44CD5 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
+		AE9361C11E8A4D0D008DD435 /* CustomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnimation.h; sourceTree = "<group>"; };
+		AE9361C21E8A4D0D008DD435 /* CustomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 			children = (
 				AE48FD041DDD7E8700A44CD5 /* XYNavigationController.h */,
 				AE48FD051DDD7E8700A44CD5 /* XYNavigationController.m */,
+				AE9361C11E8A4D0D008DD435 /* CustomAnimation.h */,
+				AE9361C21E8A4D0D008DD435 /* CustomAnimation.m */,
 				AE48FD011DDD7E7000A44CD5 /* TabBarController.h */,
 				AE48FD021DDD7E7000A44CD5 /* TabBarController.m */,
 				AE48FD071DDD7F0700A44CD5 /* TabBar.h */,
@@ -162,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE48FD061DDD7E8700A44CD5 /* XYNavigationController.m in Sources */,
+				AE9361C31E8A4D0D008DD435 /* CustomAnimation.m in Sources */,
 				AE48FCF21DDD7E5D00A44CD5 /* ViewController.m in Sources */,
 				AE48FD031DDD7E7000A44CD5 /* TabBarController.m in Sources */,
 				AE48FD091DDD7F0700A44CD5 /* TabBar.m in Sources */,
