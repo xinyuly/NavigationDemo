@@ -3,7 +3,7 @@
 
 效果图：
 
-![image](https://github.com/xinyuly/NavigationDemo/blob/master/translation.jif)
+![image](https://github.com/xinyuly/NavigationDemo/blob/master/translation.gif)
 
 实现思路：
 
