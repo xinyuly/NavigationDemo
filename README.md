@@ -1,6 +1,10 @@
 # NavigationDemo
 三种popViewController的效果,例如淘宝、京东的“整体返回”效果
 
+效果图：
+
+![image](https://github.com/xinyuly/NavigationDemo/blob/master/translation.jif)
+
 实现思路：
 
 1.创建Pan手势识别器
