@@ -47,9 +47,9 @@
 }
 
 #pragma mark - UIViewControllerAnimatedTransitioning
-
+// 动画时间
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-    return 1;
+    return 0.45;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {

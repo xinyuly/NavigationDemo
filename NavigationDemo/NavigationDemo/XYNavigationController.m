@@ -14,7 +14,7 @@
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 //Maximum width to move
-static CGFloat kMAXWidth = 320;
+#define kMAXWidth  kScreenWidth
 
 @interface XYNavigationController ()
 
